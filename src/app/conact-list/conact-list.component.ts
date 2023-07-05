@@ -51,7 +51,7 @@ export class ConactListComponent implements OnInit {
 
   addContact(): void {
     this.editMode=true;
-    this.button="Add Contact"
+    this.button="Add "
     if(this.selectedContact.id){
       this.selectedContact.id=undefined;
     }
@@ -83,15 +83,20 @@ export class ConactListComponent implements OnInit {
       lastName: this.selectedContact?.lastName || '',
       phone: this.selectedContact?.phone || ''
     });
-    this.button="Update Contact"
+    this.button="Update "
     this.editMode = true;
   }
 
   updateContact2() {
     if (this.editForm.valid) {
-      if(this.selectedContact == undefined){
+      if(this.selectedContact == undefined || this.selectedContact.id == undefined){
+        const timestamp = Date.now().toString(); // Get current timestamp as a string
+  const random = Math.floor(Math.random() * 10000).toString(); // Generate a random number and convert it to a string
+  const uniqueId = timestamp + random; // Concatenate the timestamp and random number
+
+
         this.selectedContact={
-          id:this.contacts.length+2
+          id: parseInt(uniqueId)
         }
 
         }
@@ -116,6 +121,7 @@ export class ConactListComponent implements OnInit {
       else{
 
         this.contacts.push(updatedContact);
+        this.editMode = false;
         this.editForm.reset();
       }
     }

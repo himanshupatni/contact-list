@@ -29,7 +29,7 @@
 
 
 <div *ngIf="editMode">
-  <h2>Edit Contact</h2>
+  <h2>{{button}} Contact</h2>
   <form [formGroup]="editForm" (submit)="updateContact2()">
     <div>
       <label for="firstName">First Name:</label>
@@ -43,6 +43,6 @@
       <label for="phone">Phone:</label>
       <input type="text" name="phone" id="phone" formControlName="phone" required>
     </div>
-    <button type="submit">{{button}}</button>
+    <button type="submit">{{button}} Contact</button>
   </form>
 </div>
